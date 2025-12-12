@@ -1,4 +1,4 @@
-const URL = "https://pokeapi.co/api/v2/pokemon/charmander";
+const URL = "https://api.chess.com/pub/player/hikaru";
 
 async function getData(URL) {
   try {
