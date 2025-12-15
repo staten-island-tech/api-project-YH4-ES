@@ -8,7 +8,7 @@ async function getData(URL) {
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
-      document.getElementById("api-response").textContent = data.name;
+      document.getElementById("api-responce").textContent = data.name;
     }
   } catch (error) {
     console.log(error);
