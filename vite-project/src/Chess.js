@@ -10,6 +10,7 @@ async function getData(URL) {
       console.log(data);
       document.getElementById("api-responce").textContent = data.name;
       document.getElementById("api-league").textContent = data.league;
+      document.getElementById("api-avatar").src = data.avatar
     }
   } catch (error) {
     console.log(error);
