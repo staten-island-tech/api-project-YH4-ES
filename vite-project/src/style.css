@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.chesscontainer{
+    width: 80%;
+    margin: 20px auto;
+    border: solid;
+    border-width: 5px;
+    height: 500px;
+}

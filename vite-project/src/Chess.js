@@ -11,6 +11,9 @@ async function getData(URL) {
       document.getElementById("api-responce").textContent = data.name;
       document.getElementById("api-league").textContent = data.league;
       document.getElementById("api-avatar").src = data.avatar
+      document.getElementById("api-location").textContent = data.location;
+      document.getElementById("api-streamertoggle").textContent = `Is streamer?: ${data.is_streamer}`
+      document.getElementById("api-id").textContent = data.player_id
     }
   } catch (error) {
     console.log(error);
