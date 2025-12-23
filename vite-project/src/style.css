@@ -7,3 +7,9 @@
     border-width: 5px;
     height: 500px;
 }
+
+.loadplayers{
+    width: 30%;
+    border: solid;
+    border-radius: 5px;
+}

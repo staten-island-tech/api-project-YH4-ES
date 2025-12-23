@@ -1,6 +1,41 @@
 let who = "hikaru"
 let i = 0
+let body = document.querySelector(".chesschessContainer")
 
+async function getThemPeople(country, people) {
+  try {
+    let responcen = await fetch (`https://api.chess.com/pub/country/${country}/players`)
+    if (responcen.status != 200) {
+      throw new Error(responcen);
+
+    } else {
+      let data = await responcen.json()
+      let result = [];
+
+      for(var i in data)
+      result.push([i, data [i]]);
+      console.log(result)
+      body.insertAdjacentHTML("afterbegin", 
+        `
+
+        `
+      )
+    }
+  } catch (error){
+    console.log(error)
+  }
+
+}
+getThemPeople("US")
+
+function certainnumb (country, people) {
+  let ctry = document.getElementById(country)
+  ctry.textContent = `Load first ${people} users in ${country}`
+}
+certainnumb("US", 50);
+certainnumb("JP", 50);
+certainnumb("CN", 50);
+certainnumb("DE", 50);
 
 
 const URL = `https://api.chess.com/pub/player/${who}`;
@@ -34,7 +69,7 @@ async function getData(URL) {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
       console.log(who)
-      let body = document.querySelector(".chesschessContainer")
+      
       body.insertAdjacentHTML(`afterbegin`,
         `<div class="chesscontainer" data-container = "${i}">
         <div class = "m-5 flex flex-row bg-[#1D291D] text-[#FEF9E3]">
