@@ -10,23 +10,17 @@ async function getThemPeople(country, people) {
 
     } else {
       let data = await responcen.json()
-      let result = [];
-
-      for(var i in data)
-      result.push([i, data [i]]);
-      console.log(result)
-      body.insertAdjacentHTML("afterbegin", 
-        `
-
-        `
-      )
+      for (let i = 0; i <= people ; i++) {
+        let who = data.players[i]
+        getData(`https://api.chess.com/pub/player/${who}`)
+      }
     }
   } catch (error){
     console.log(error)
   }
 
 }
-getThemPeople("US")
+getThemPeople("US", 50)
 
 function certainnumb (country, people) {
   let ctry = document.getElementById(country)
@@ -51,7 +45,9 @@ try {
       console.log(who)
       document.getElementById("api-responce").textContent = data.name;
       document.getElementById("api-league").textContent = data.league;
-      document.getElementById("api-avatar").src = data.avatar
+      if (data.avatar !== undefined) {
+        document.getElementById("api-avatar").src = data.avatar
+      }
       document.getElementById("api-location").textContent = data.location;
       document.getElementById("api-streamertoggle").textContent = `Is streamer?: ${data.is_streamer}`
       document.getElementById("api-id").textContent = data.player_id
@@ -67,13 +63,11 @@ async function getData(URL) {
       throw new Error(response);
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
-      console.log(data);
-      console.log(who)
       
       body.insertAdjacentHTML(`afterbegin`,
         `<div class="chesscontainer" data-container = "${i}">
         <div class = "m-5 flex flex-row bg-[#1D291D] text-[#FEF9E3]">
-
+            <h1 id = "api-name" class = "text-[#FEF9E3]"></h1>
             <h1 id ="api-league" class = "text-[#FEF9E3]"></h1>
             <img id = "api-avatar" src="" alt="stockholm"></img>
         </div> 
@@ -86,8 +80,7 @@ async function getData(URL) {
         `
       )
       console.log(data);
-      console.log(who)
-      document.getElementById("api-responce").textContent = data.name;
+      document.getElementById("api-name").textContent = data.name;
       document.getElementById("api-league").textContent = data.league;
       document.getElementById("api-avatar").src = data.avatar
       document.getElementById("api-location").textContent = data.location;
