@@ -1,6 +1,7 @@
 let who = "hikaru"
 let i = 0
 let body = document.querySelector(".chesschessContainer")
+let lastloadiscountry = false
 
 async function getThemPeople(country, people) {
   try {
@@ -9,6 +10,8 @@ async function getThemPeople(country, people) {
       throw new Error(responcen);
 
     } else {
+      lastloadiscountry = true
+      
       let data = await responcen.json()
       for (let i = 0; i <= people ; i++) {
         let who = data.players[i]
@@ -22,9 +25,19 @@ async function getThemPeople(country, people) {
 }
 getThemPeople("US", 50)
 
-function certainnumb (country, people) {
-  let ctry = document.getElementById(country)
-  ctry.textContent = `Load first ${people} users in ${country}`
+function enableCountryButtons(country, people) {
+  let button = document.getElementById(country)
+  button.addEventListener("click", () => { getThemPeople(country, people)})
+}
+
+enableCountryButtons("US", 50)
+enableCountryButtons("JP", 50)
+enableCountryButtons("CN", 50)
+enableCountryButtons("DE", 50)
+
+function certainnumb (id, people) {
+  let ctry = document.getElementById(id)
+  ctry.textContent = `Load first ${people} users in ${id}`
 }
 certainnumb("US", 50);
 certainnumb("JP", 50);
@@ -62,6 +75,7 @@ async function getData(URL) {
     if (response.status != 200) {
       throw new Error(response);
     } else {
+      
       const data = await response.json(); //makes the data into JSON object we can use
       
       body.insertAdjacentHTML(`afterbegin`,
@@ -99,6 +113,24 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
     var formdata = new FormData(e.target)
     console.log(Object.fromEntries(formdata))
     let datatemp = Object.fromEntries(formdata)
-    who = datatemp.guy
+    var who = datatemp.guy
+    if (lastloadiscountry == true) {
+        body.innerHTML = ""
+      }
     getData(`https://api.chess.com/pub/player/${who}`)
+})
+
+document.getElementById("customloader").addEventListener("submit", function(e) {
+  e.preventDefault()
+  var formdata = new FormData(e.target)
+  console.log(Object.fromEntries(formdata))
+  let datatemp = Object.fromEntries(formdata)
+  var country = datatemp.country
+  var people = datatemp.people
+  console.log(country)
+
+  let button = document.getElementById("custom")
+  button.textContent = `Load first ${people} users in ${country}`
+  
+  button.addEventListener("click", () => {getThemPeople(country, people)})
 })
