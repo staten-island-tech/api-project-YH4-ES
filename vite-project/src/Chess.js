@@ -23,7 +23,6 @@ async function getThemPeople(country, people) {
   }
 
 }
-getThemPeople("US", 50)
 
 function enableCountryButtons(country, people) {
   let button = document.getElementById(country)
@@ -47,28 +46,7 @@ certainnumb("DE", 50);
 
 const URL = `https://api.chess.com/pub/player/${who}`;
 
-async function example(){
-try {
-    const response = await fetch(URL);
-    if (response.status != 200) {
-      throw new Error(response);
-    } else {
-      const data = await response.json(); //makes the data into JSON object we can use
-      console.log(data);
-      console.log(who)
-      document.getElementById("api-responce").textContent = data.name;
-      document.getElementById("api-league").textContent = data.league;
-      if (data.avatar !== undefined) {
-        document.getElementById("api-avatar").src = data.avatar
-      }
-      document.getElementById("api-location").textContent = data.location;
-      document.getElementById("api-streamertoggle").textContent = `Is streamer?: ${data.is_streamer}`
-      document.getElementById("api-id").textContent = data.player_id
-    
-}} catch (error){
-  console.log(error)
-}
-}
+
 async function getData(URL) {
   try {
     const response = await fetch(URL);
@@ -81,14 +59,18 @@ async function getData(URL) {
       body.insertAdjacentHTML(`afterbegin`,
         `<div class="chesscontainer" data-container = "${i}">
         <div class = "m-5 flex flex-row bg-[#1D291D] text-[#FEF9E3]">
+        <img class= "border-solid border-2 m-3" id = "api-avatar" src="" alt="stockholm"></img>
+          <div class = "flex flex-col">
             <h1 id = "api-name" class = "text-[#FEF9E3]"></h1>
             <h1 id ="api-league" class = "text-[#FEF9E3]"></h1>
-            <img id = "api-avatar" src="" alt="stockholm"></img>
-        </div> 
+          </div>
+        </div>
         <div class = "m-5 bg-[#1D291D] text-[#FEF9E3]">
             <h2 id = "api-location"></h2>
             <h2 id = "api-streamertoggle"></h2>
             <h2 id = "api-id"></h2>
+            <h2 id = "api-title"></h2>
+            <a id = "api-link" href=""></a>
         </div>
     </div>
         `
@@ -99,7 +81,13 @@ async function getData(URL) {
       document.getElementById("api-avatar").src = data.avatar
       document.getElementById("api-location").textContent = data.location;
       document.getElementById("api-streamertoggle").textContent = `Is streamer?: ${data.is_streamer}`
-      document.getElementById("api-id").textContent = data.player_id
+      document.getElementById("api-id").textContent = `id: ${data.player_id}`
+      document.getElementById("api-title").textContent = `title: ${data.title}`
+      document.getElementById("api-link").textContent = `link: ${data.url}`
+      document.getElementById("api-link").href = `${data.url}`
+      if (data.url){
+        document.getElementById("api-link").style.color = "blue"
+      }
       
     }
   } catch (error) {

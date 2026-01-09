@@ -13,3 +13,9 @@
     border: solid;
     border-radius: 5px;
 }
+
+#myForm {
+    border: solid;
+    border-width: 2px;
+    max-width: fit-content;
+}
