@@ -15,14 +15,12 @@
     <div class = "loadplayers" id = "JP"><h1>Load first 50 users in Japan</h1></div>
     <div class = "loadplayers" id = "CN"><h1>Load first 50 users in China</h1></div>
     <div class = "loadplayers" id = "DE"><h1>Load first 50 users in Germany</h1></div>
-    <div class="m-5 ">
         <form id="customloader" class = "formlight">
-            <input class="w-50 border-solid border-2" type="text" name="country" placeholder="Country (2 letter acronym)">
+            <input class="w-50 border-solid border-2" type="text" name="country" placeholder="Country (AREA CODE)">
             <input class="w-50 border-solid border-2" type="text" name="people" placeholder="Num of people (Not letters)">
             <button type="submit">Confirm</button>
         </form>
         <div class = "loadplayers" id = "custom"><h1>Load first __ users in __</h1></div>
-    </div>
     <form id="myForm" class = "formlight">
             <input class="w-100" type="text" name="guy" placeholder="Who are you trying to find? (Exact name)">
             <button type="submit">Confirm</button>
@@ -31,7 +29,7 @@
     <div class = "chesschessContainer"><!--here goes-->
     </div>
     
-    <script src="src/Chess.js"></script>
+    <script type = "module" src="src/Chess.js"></script>
     </body>
     
 

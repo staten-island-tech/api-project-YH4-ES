@@ -9,7 +9,7 @@
 }
 
 .loadplayers{
-    width: 30%;
+    width: 500px;
     border: solid;
     border-radius: 5px;
 }
@@ -18,4 +18,12 @@
     border: solid;
     border-width: 2px;
     max-width: fit-content;
+}
+
+#customloader{
+    margin: 20px 20px 5px 30px;
+}
+
+#custom{
+    margin: 5px 5px 20px;
 }

@@ -12,6 +12,7 @@ async function getThemPeople(country, people) {
     } else {
       lastloadiscountry = true
       
+      body.innerHTML = ""
       let data = await responcen.json()
       for (let i = 0; i <= people ; i++) {
         let who = data.players[i]
@@ -103,6 +104,7 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
     let datatemp = Object.fromEntries(formdata)
     var who = datatemp.guy
     if (lastloadiscountry == true) {
+        console.log("Cleared")
         body.innerHTML = ""
       }
     getData(`https://api.chess.com/pub/player/${who}`)
